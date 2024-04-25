@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercícios JavaScript</title>
+<style>
+  body {
+        background-image: url(ClientArtwork_BossFight_Winter2017_2048x1152.jpg.4df1d8e79d7087ed4029d8efaef1ebbb.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    .row {
+        display: flex;
+        justify-content: center;
+    }
+    .col {
+        margin: 10px;
+    }
+
+    h3 {
+        color: white; 
+    }
+
+    p {
+        color: white; 
+    }
+
+    button {
+        color: black; 
+    }
+
+    input {
+        color: black; 
+    }
+</style>
+</head>
+<body>
+
+<div class="row">
+    <div class="col">
+        <h3>Operações matemáticas</h3>
+        <button onclick="mostrarOperacoes()">Mostrar Operações</button>
+    </div>
+    <div class="col">
+        <h3>Loop de 10 a 100</h3>
+        <button onclick="mostrarLoop()">Mostrar Loop</button>
+    </div>
+    <div class="col">
+        <h3>Tabuada</h3>
+        <button onclick="mostrarTabuada(5)">Mostrar Tabuada do 5</button>
+    </div>
+    <div class="col">
+        <h3>Tabuada com valor variável</h3>
+        <input type="number" id="valorTabuada" placeholder="Insira um número">
+        <button onclick="mostrarTabuadaVariavel()">Mostrar Tabuada</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <h3>Calculadora</h3>
+        <input type="number" id="num1" placeholder="Número 1">
+        <input type="number" id="num2" placeholder="Número 2">
+        <select id="operacao">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <button onclick="calcular()">Calcular</button>
+        <p id="resultado"></p>
+    </div>
+    <div class="col">
+        <h3>Números Pares</h3>
+        <button onclick="exibirPares()">Exibir Pares</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <h3>Custo do Carro</h3>
+        <input type="number" id="custoFabrica" placeholder="Custo de Fábrica">
+        <input type="number" id="percDistribuidor" placeholder="% Distribuidor">
+        <input type="number" id="percImpostos" placeholder="% Impostos">
+        <button onclick="calcularCustoCarro()">Calcular</button>
+        <p id="valorfinal"></p>
+    </div>
+</div>
+
+<script>
+    
+    const valor1 = 10;
+    const valor2 = 100;
+
+    
+    function mostrarOperacoes() {
+        alert(`Soma: ${valor1 + valor2}\nSubtração: ${valor1 - valor2}\nDivisão: ${valor1 / valor2}\nMultiplicação: ${valor1 * valor2}`);
+    }
+
+    
+    function mostrarLoop() {
+        let output = '';
+        for (let i = 10; i <= 100; i++) {
+            output += i + ' ';
+        }
+        alert(output);
+    }
+
+   
+    function mostrarTabuada(numero) {
+        let output = '';
+        for (let i = 1; i <= 10; i++) {
+            output += `${numero} x ${i} = ${numero * i}\n`;
+        }
+        alert(output);
+    }
+
+   
+    function mostrarTabuadaVariavel() {
+        const numero = parseInt(document.getElementById('valorTabuada').value);
+        let output = '';
+        for (let i = 1; i <= 10; i++) {
+            output += `${numero} x ${i} = ${numero * i}\n`;
+        }
+        alert(output);
+    }
+
+   
+    function calcular() {
+        const num1 = parseFloat(document.getElementById('num1').value);
+        const num2 = parseFloat(document.getElementById('num2').value);
+        const operacao = document.getElementById('operacao').value;
+        let resultado;
+        switch (operacao) {
+            case '+':
+                resultado = num1 + num2;
+                break;
+            case '-':
+                resultado = num1 - num2;
+                break;
+            case '*':
+                resultado = num1 * num2;
+                break;
+            case '/':
+                resultado = num1 / num2;
+                break;
+            default:
+                resultado = 'Operação inválida';
+        }
+        document.getElementById('resultado').innerText = `Resultado: ${resultado}`;
+    }
+
+   
+    function exibirPares() {
+        const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        const pares = numeros.filter(numero => numero % 2 === 0);
+        alert(`Números pares: ${pares.join(', ')}`);
+    }
+
+    
+    function calcularCustoCarro() {
+        const custoFabrica = parseFloat(document.getElementById('custoFabrica').value);
+        const percDistribuidor = parseFloat(document.getElementById('percDistribuidor').value);
+        const percImpostos = parseFloat(document.getElementById('percImpostos').value);
+        const valorFinal = custoFabrica + (custoFabrica * percDistribuidor / 100) + (custoFabrica * percImpostos / 100);
+        document.getElementById('valorfinal').innerText = `Valor final: R$ ${valorFinal.toFixed(2)}`;
+    }
+</script>
+
+</body>
+</html>
